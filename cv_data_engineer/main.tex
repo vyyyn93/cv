@@ -1,13 +1,13 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper,11pt]{article}
 
-% Encoding and typography
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[scaled=0.95]{helvet}
+\usepackage[french]{babel}
+\usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
-
-% Page layout and visual elements
-\usepackage[left=1.2cm, right=1.2cm, top=1.2cm, bottom=1.2cm]{geometry}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\usepackage[left=1.6cm,right=1.6cm,top=1.35cm,bottom=1.35cm]{geometry}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{enumitem}
@@ -15,104 +15,111 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 
-% PDF metadata and link appearance
+\definecolor{accent}{HTML}{24465C}
+\definecolor{ink}{HTML}{242B30}
+\definecolor{muted}{HTML}{56636D}
+\definecolor{pale}{HTML}{F0F4F6}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,
-    urlcolor=blue,
-    pdftitle={CV Marvyn Martinez},
+    colorlinks=true, urlcolor=accent, linkcolor=accent,
+    pdftitle={Marvyn Martinez : Data Platform Engineer},
+    pdfauthor={Marvyn Martinez},
+    pdflang={fr-FR}
 }
-
-% Global document style
-\setlength{\parindent}{0pt}
 \pagestyle{empty}
-\titlespacing{\section}{0pt}{13pt}{4pt}
-
-% Reusable CV structures
-\newcommand{\cvsection}[1]{%
-    \section*{#1}%
-    \hrule
-    \vspace{0.2cm}%
-}
-
-\newcommand{\educationentry}[4]{%
-    \textbf{#1} | \textit{#2} \hfill \textit{#3} \\
-    #4\par
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.03}
+\titleformat{\section}{\fontsize{11}{13}\selectfont\bfseries\color{accent}}{}{0pt}{}[{\vspace{2pt}\titlerule[0.4pt]}]
+\titlespacing*{\section}{0pt}{11pt}{7pt}
+\setlist[itemize]{leftmargin=1.2em,label={\color{accent}\textbullet},itemsep=3pt,parsep=0pt,topsep=4pt}
+\newcommand{\mission}[1]{\vspace{6pt}{\color{accent}\bfseries #1}\par}
+\newcommand{\employer}[3]{%
+    {\fontsize{12}{14}\selectfont\bfseries #1}\hfill
+    {\small\color{muted}#3}\par
+    \vspace{2pt}{\color{muted}#2}\par
 }
 
 \begin{document}
+\raggedright
+\color{ink}
 
-% Header
-\begin{minipage}[m]{0.19\textwidth}
-    \raggedright
-    \begin{tikzpicture}
-        \clip [rounded corners=0.3cm] (0,0) rectangle (2.5cm, 3.2cm);
-        \node[anchor=south west, inner sep=0pt] at (0,-0.4) {\includegraphics[width=2.5cm]{assets/photo.JPG}};
-    \end{tikzpicture}
-\end{minipage}
-\begin{minipage}[m]{0.8\textwidth}
-    \linespread{1.2}\selectfont
-    {\huge \textbf{Marvyn Martinez}} \\
-    {\large \color{gray} Data Engineer | Kafka - Spark - AWS} \\
-    Paris, France | marvyn.martinez@icloud.com \\
-    06.88.31.89.82 | \href{https://www.linkedin.com/in/marvyn-martinez/}{LinkedIn}
-\end{minipage}
+\begin{minipage}[c]{0.80\textwidth}
+{\fontsize{26}{29}\selectfont\bfseries Marvyn Martinez}\par
+\vspace{4pt}
+{\fontsize{16}{19}\selectfont Data Platform Engineer}\par
+\vspace{3pt}
+{\color{accent}\bfseries AWS · Databricks}\par
+\vspace{8pt}
+{\small
+Paris, Île-de-France \enspace·\enspace \href{tel:+33688318982}{06 88 31 89 82}\par
+\vspace{2pt}
+\href{mailto:marvyn.martinez@icloud.com}{marvyn.martinez@icloud.com}\par
+\vspace{2pt}
+\href{https://www.linkedin.com/in/marvyn-martinez/}{linkedin.com/in/marvyn-martinez}}
+\end{minipage}\hfill
+\begin{minipage}[c]{2.6cm}
+\begin{tikzpicture}
+    \clip[rounded corners=2pt] (0,0) rectangle (2.6,3.1);
+    \node[anchor=south west,inner sep=0pt] at (-0.15,-0.8)
+        {\includegraphics[width=2.9cm]{assets/photo.JPG}};
+\end{tikzpicture}
+\end{minipage}\par
 
-\linespread{1.45}\selectfont
+\vspace{10pt}
+\begingroup
+\setlength{\fboxsep}{8pt}
+\colorbox{pale}{\begin{minipage}{\dimexpr\textwidth-2\fboxsep\relax}
+    {\fontsize{9}{11}\selectfont\color{accent}\bfseries CERTIFICATIONS}\par
+    \vspace{4pt}
+    {\small Databricks Certified Data Engineer Associate\par
+    \vspace{2pt}
+    Claude Certified Architect - Foundations}
+\end{minipage}}
+\endgroup
 
-% Skills
-\cvsection{COMPÉTENCES}
+\section*{EXPÉRIENCES PROFESSIONNELLES}
 
-\begin{itemize}[leftmargin=*, label={}, itemsep=2pt, parsep=0pt]
-    \item \textbf{IA \& Analyse de données :} Python, Pandas, PyTorch, TensorFlow, Scikit-Learn
-    \item \textbf{Data Engineering :} PySpark, Airflow, Kafka (Batch/Streaming), Snowflake, SQL 
-    \item \textbf{Cloud \& Infrastructure :} AWS (S3, Lambda), Snowpark, Unix Shell
-    \item \textbf{DevOps :} GitLab CI/CD, Confluence, Artifactory, JIRA, SonarQube
-    \item \textbf{Observabilité \& BI :} Elasticsearch, Kibana, Tableau
-    \item \textbf{Certifications :} TOEIC (805), Voltaire (797)
+\employer{SIA PARTNERS}{DataOps Engineer}{Avril 2026 à aujourd'hui}
+\begin{list}{}{\setlength{\leftmargin}{0.5em}\setlength{\rightmargin}{0pt}\setlength{\topsep}{0pt}\setlength{\parsep}{0pt}}
+\item\relax
+\mission{Enedis - industrialisation de simulations énergétiques}
+\begin{itemize}
+    \item Architecture dbt / DuckDB : conception d'environ \textbf{60 modèles SQL} pour simuler la production et la consommation électriques à l'horizon 2050. Tests de validation des résultats.
+    \item Réduction du temps de calcul de \textbf{7 à 8 h à moins de 4 h} sur un pod distant. Orchestration avec Airflow, image Docker et intégration CI/CD sur Kubernetes avec les DevOps.
 \end{itemize}
 
-% Professional experience
-\cvsection{EXPÉRIENCES PROFESSIONNELLES}
-
-\textbf{Data Engineer} \hfill \textit{Sept. 2022 -- Août 2025} \\
-\textbf{Bouygues Telecom} \hfill \textit{Meudon, France}
-
-\begin{itemize}[leftmargin=*, itemsep=1pt, parsep=0pt, label={---}]
-    \item Conception et pilotage de pipelines ETL/ELT multi-sources à forte volumétrie (JSON, Kafka -> Oracle/PostgreSQL) avec Python/Spark/Airflow - réduction du temps de traitement de 80\%.
-    \item Garantie de la résilience des traitements : gestion des offsets Kafka (reprise sur incident), idempotence, tests unitaires et d'intégration automatisés, contrôles d'intégrité sur les flux de données.
-    \item Développement de packages Python réutilisables (SQLAlchemy, Pandas, Spark, Snowpark, Kafka) pour standardiser les accès BDD et les contrôles qualité des traitements ETL/ELT.
-    \item Mise en place du socle CI (GitLab CI/CD, Docker, Artifactory) avec les équipes DevOps pour automatiser les tests, le packaging et déploiement d’artefacts sur repository interne.
-    \item Optimisation des performances SQL/Snowpark et Spark (partitionnement, plans d'exécution) - réduction des coûts compute et des temps d'exécution.
-    \item Création de dashboards Tableau/Kibana pour data analysts, équipes métier (gestion d'incidents) et managers - +100 consultations/semaine.
-    \item Rédaction et maintenance d'une documentation technique de 80+ pages sur Confluence ; animation d'ateliers techniques pour l'onboarding et le partage de connaissances.
-    \item Travail en méthodologie Agile au sein d'une équipe de 6 personnes: daily, revues de code et sprints adaptés aux projets.
+\mission{Plateforme interne - migration Databricks / AWS}
+\begin{itemize}
+    \item Migration vers Databricks d'une plateforme de recherche de profils et de son chatbot MCP. La plateforme est utilisée par environ \textbf{50 managers} pour un vivier de \textbf{2\,000 consultants}.
+    \item CI/CD avec Databricks Asset Bundles, pytest et smoke tests. Référent technique pour un déploiement client et coordination de \textbf{2 Data Engineers et 1 DevOps}.
 \end{itemize}
 
-% Education
-\cvsection{FORMATION}
+\mission{Miléade - automatisation d'une collecte tarifaire}
+\begin{itemize}
+    \item Infrastructure Terraform / AWS pour un scraper existant : \textbf{15 sites en moins d'une heure}, collecte quotidienne automatisée et livraison des résultats sur SharePoint.
+    \item Redimensionnement des ressources après tests : coût réel de \textbf{80 \$/mois} pour un budget prévisionnel de 500 \$/mois. Supervision avec CloudWatch et gestion des secrets.
+\end{itemize}
+\end{list}
 
-\educationentry
-    {ESIEE Paris}
-    {Diplôme d'Ingénieur}
-    {Août 2025}
-    {Algorithmique, architecture logicielle et machine learning}
+\vspace{8pt}
+\employer{BOUYGUES TELECOM}{Data Engineer · Alternance}{Sept. 2022 à août 2025}
+\begin{itemize}
+    \item Pipelines \textbf{Python / Spark / Airflow} pour transférer les données de sources JSON et Kafka vers Oracle/PostgreSQL. Gestion des offsets, reprises sur incident et idempotence.
+    \item Packages Python réutilisables pour les accès aux bases et la qualité des données. Tests unitaires et d'intégration, CI avec GitLab, Docker et Artifactory.
+\end{itemize}
 
-\vspace{0.3cm}
+\section*{COMPÉTENCES TECHNIQUES}
+\textbf{Data :} Python, SQL, PySpark, dbt, DuckDB, Airflow, Kafka, PostgreSQL.\par
+\vspace{2pt}
+\textbf{Plateforme :} AWS, Databricks, Terraform, Docker, Kubernetes, GitLab CI/CD.\par
+\vspace{2pt}
+\textbf{Qualité et IA :} pytest, contrôles de données, CloudWatch, MCP, recherche vectorielle.
 
-\educationentry
-    {Heriot-Watt University Malaysia}
-    {Master of Science}
-    {Décembre 2024}
-    {Stratégie d'entreprise et Leadership}
-
-\vspace{0.3cm}
-
-\educationentry
-    {ESIEE Paris}
-    {Classe Préparatoire (MPSI)}
-    {Août 2022}
-    {Mathématiques, Physique et Sciences de l'Ingénieur}
+\section*{FORMATION ET LANGUES}
+\textbf{ESIEE Paris} : diplôme d'ingénieur\hfill {\small\color{muted}Août 2025}\par
+\vspace{3pt}
+\textbf{Heriot-Watt University Malaysia} : échange d'un semestre.\par
+\vspace{3pt}
+\textbf{Anglais :} à l'aise à l'oral.
 
 \end{document}
